@@ -13,4 +13,20 @@ public Solution {
     if (b == 0) return a;
     else return (b, a % b);
   }
+
+// A more advanced algorithm
+// This won't compile because Java disallow implicit conversion from integers to booleans,
+// However the idea behind is neat.
+  public int gcd(int a, int b) {
+    if (a == b) return a;
+    if (a < b) return gcd(b, a)
+    else {
+      if (!(a & 1) && !(b & 1)) return gcd(a >> 1, b >> 1);
+      else if (!(a & 1) && (b & 1)) return gcd(a >> 1, b);
+      else if ((a & 1) && !(b & 1)) return gcd(a, b >> 1);
+      else return gcd(b, a - b);
+    }
+  }
 }
+
+
