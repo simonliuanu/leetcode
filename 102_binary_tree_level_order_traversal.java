@@ -59,12 +59,12 @@ class Solution {
             queue.offer(root);
         }
 
-        while(!queue.isEmpty()) {
+        while (!queue.isEmpty()) {
             int size = queue.size();
             List<Integer> list = new ArrayList<>();
-            while(size-- > 0) {
-                TreeNode node = queue.peek();
-                queue.pool();
+            while (size-- > 0) {
+                // TreeNode node = queue.peek();
+                TreeNode node = queue.pool();
                 list.add(node.val);
 
                 if (node.left != null) {
