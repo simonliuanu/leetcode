@@ -5,8 +5,7 @@ class Solution {
             int max = 0;
             for (int i = 0; i < grid.length; i++) {
                 int temp = 0;
-                if (grid[i][j] < 0) temp++;
-                if (grid[i][j] == 0) temp++;
+                if (grid[i][j] <= 0) temp++;
                 while(grid[i][j] != 0) {
                     grid[i][j] /= 10;
                     temp++;
