@@ -15,3 +15,18 @@ class Solution {
         return ret;
     }
 }
+
+// A even simpler Solution
+class Solution {
+    public String baseNeg2(int n) {
+        if (n == 0 || n == 1) return String.valueOf(n);
+        StringBuilder ret = new StringBuilder();
+        while (n != 0) {
+            int r = n & 1;
+            ret.append(r);
+            n -= r;
+            n /= -2;
+        }
+        return ret.reverse().toString();
+    }
+}
