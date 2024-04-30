@@ -21,12 +21,12 @@ class Solution {
         }
 
         for (List<Integer> d : diag) {
-            Collections.sort(d, Collections.reverseOrder());
+            Collections.sort(d);
         }
 
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < m; j++) {
-                mat[i][j] = diag.get(i - j + m).removeLast();
+                mat[i][j] = diag.get(i - j + m).removeFirst();
             }
         }
 
