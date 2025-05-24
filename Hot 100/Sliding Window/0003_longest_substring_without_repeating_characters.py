@@ -15,3 +15,16 @@ class Solution:
             occ.remove(s[l])
 
         return ans
+
+# An optimized solution:
+class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        arr = [0] * 127
+        ans = 0
+        l = 0
+        for r, ch in enumerate(s):
+            l = max(arr[ord(ch)], l)
+            arr[ord(ch)] = r + 1
+            ans = max(ans, r - l + 1)
+        return ans
+
