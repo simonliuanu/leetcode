@@ -16,7 +16,7 @@ class Solution:
 
         return ans
 
-# An optimized solution:
+# A faster solution:
 class Solution:
     def lengthOfLongestSubstring(self, s: str) -> int:
         arr = [0] * 127
