@@ -7,6 +7,7 @@ class Solution {
         int ans = -1, minDist = n;
 
         for (int i = 0; i < n; i++) {
+            // This if check
             if (dist1[i] < 0 || dist2[i] < 0) continue;
             int cand = Math.max(dist1[i], dist2[i]);
             if (cand < minDist) {
@@ -21,6 +22,7 @@ class Solution {
     private int[] calcDist(int[] edges, int node) {
         int n = edges.length;
         int[] ret = new int[n];
+        // If fill with n(to express not reachable), the above if check could be removed.
         Arrays.fill(ret, -1);
         int curr = node, dist = 0;
         while (curr != -1 && ret[curr] == -1) {
