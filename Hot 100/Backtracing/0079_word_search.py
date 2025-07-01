@@ -44,3 +44,31 @@ class Solution:
             board[x][y] = word[i]
 
         return any(dfs(x, y, 0) for x in range(r) for y in range(c))
+
+# Optimisation
+class Solution:
+    def exist(self, board: List[List[str]], word: str) -> bool:
+        cnt = Counter(c for row in board for c in row)
+        if not cnt >= Counter(word):
+            return False
+        if cnt[word[0]] > cnt[word[-1]]:
+            word = word[::-1]
+
+        rows, colums = len(board), len(board[0])
+        def dfs(x: int, y: int, i: int) -> bool:
+            if board[x][y] != word[i]:
+                return False
+            if i == len(word) - 1:
+                return True
+            for dx, dy in ((1, 0), (0, 1), (-1, 0), (0, -1)):
+                board[x][y] = ''
+                if 0 <= x + dx < rows and 0 <= y + dy < colums and dfs(x + dx, y + dy, i + 1):
+                    return True
+                board[x][y] = word[i]
+            return False
+
+        for i in range(rows):
+            for j in range(colums):
+                if board[i][j] == word[0] and dfs(i, j, 0):
+                    return True
+        return False
