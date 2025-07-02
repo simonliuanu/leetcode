@@ -9,8 +9,8 @@ class Solution:
             if len(path) == n:
                 ans.append(path.copy())
                 return
-            if len(path) > n:
-                return
+            # if len(path) > n:
+            #     return
 
             for i in range(n):
                 if not used[i]:
