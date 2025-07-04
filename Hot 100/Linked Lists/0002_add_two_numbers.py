@@ -53,8 +53,15 @@ class Solution:
         p, q = l1, l2
         carry = 0
 
-        while p or q or curr:
-            sum = p.val + q.val + carry
+        while p or q or carry:
+            x = p.val if p else 0
+            y = q.val if q else 0
+            sum = x + y + carry
             carry = sum // 10
-            ListNode(sum % 10)
+            curr.next = ListNode(sum % 10)
+            curr = curr.next
+            if p: p = p.next
+            if q: q = q.next
+
+        return dummy.next
 
