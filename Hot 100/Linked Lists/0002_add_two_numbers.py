@@ -43,3 +43,18 @@ class Solution:
             l3 = tmp
 
         return reverseList(l3)
+
+# a smarter solution
+class Solution:
+    def addTwoNumbers(self, l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
+        dummy = ListNode()
+        curr = dummy
+
+        p, q = l1, l2
+        carry = 0
+
+        while p or q or curr:
+            sum = p.val + q.val + carry
+            carry = sum // 10
+            ListNode(sum % 10)
+
