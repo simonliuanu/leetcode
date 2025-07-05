@@ -22,3 +22,27 @@ class Solution:
             curr = curr.next
         return mp[head]
 
+# O(1) solution:
+class Solution:
+    def copyRandomList(self, head: 'Optional[Node]') -> 'Optional[Node]':
+        if not head: return None
+        cur = head
+        while cur:
+            tmp = Node(cur.val)
+            tmp.next = cur.next
+            cur.next = tmp
+            cur = tmp.next
+        cur = head
+        while cur:
+            if cur.random:
+                cur.next.random = cur.random.next
+            cur = cur.next.next
+        odd = oddHead = head
+        even = evenHead = head.next
+        while even and even.next:
+            odd.next = even.next
+            odd = even.next
+            even.next = odd.next
+            even = odd.next
+        return evenHead
+
