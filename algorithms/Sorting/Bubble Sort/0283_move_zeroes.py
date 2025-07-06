@@ -8,9 +8,7 @@ class Solution:
         for i in range(n):
             for j in range(n - i - 1):
                 if nums[j] == 0:
-                    tmp = nums[j]
-                    nums[j] = nums[j + 1]
-                    nums[j + 1] = tmp
+                    nums[j], nums[j + 1] = nums[j + 1], nums[j]
 
 # double pointers solution:
 class Solution:
