@@ -17,7 +17,7 @@ class Solution:
         def binary_search(nums: List[int], i: int) -> int:
             n = len(nums)
             l, r = 0, n - 1
-            while l < r:
+            while l <= r:
                 m = (l + r) >> 1
                 if nums[m] == i:
                     return m
@@ -35,3 +35,17 @@ class Solution:
                 return i
         return n + 1
 
+# in-place hash solution:
+class Solution:
+    def firstMissingPositive(self, nums: List[int]) -> int:
+        n = len(nums)
+        for i in range(n):
+            while 1 <= nums[i] <= n and nums[i] != nums[nums[i] - 1]:
+                # nums[i], nums[nums[i] - 1] = nums[nums[i] - 1], nums[i]
+                # notice! the above expression will cause error
+                # the below one is fine
+                nums[nums[i] - 1], nums[i] = nums[i], nums[nums[i] - 1]
+        for i in range(n):
+            if nums[i] != i + 1:
+                return i + 1
+        return n + 1
