@@ -36,3 +36,25 @@ class Solution:
             root = root.right
 
         return ans
+
+# Morris Traversal solution(O(1) in extra space):
+class Solution:
+    def inorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+        ans = []
+        while root:
+            if not root.left:
+                ans.append(root.val)
+                root = root.right
+            else:
+                p = root.left
+                while p.right and p.right != root:
+                    p = p.right
+                if not p.right:
+                    p.right = root
+                    root = root.left
+                else:
+                    ans.append(root.val)
+                    root = root.right
+        return ans
+
+
