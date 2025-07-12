@@ -5,10 +5,9 @@
 #         self.left = left
 #         self.right = right
 
-# iteration solution:
 from collections import deque
 
-
+# iteration solution:
 class Solution:
     def levelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
         if not root:
@@ -46,4 +45,21 @@ class Solution:
                 if node.right:
                     q.append(node.right)
             ans.append(tmp)
+        return ans
+
+# recursion solution:
+class Solution:
+    def levelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
+        ans = []
+
+        def dfs(node: Optional[TreeNode], d: int) -> None:
+            if not node:
+                return
+            if d == len(ans):
+                ans.append([])
+            ans[d].append(node.val)
+            dfs(node.left, d + 1)
+            dfs(node.right, d + 1)
+
+        dfs(root, 0)
         return ans
