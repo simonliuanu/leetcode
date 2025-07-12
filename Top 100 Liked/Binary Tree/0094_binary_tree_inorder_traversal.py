@@ -53,6 +53,8 @@ class Solution:
                     p.right = root
                     root = root.left
                 else:
+                    # Add the following expression to restore the original structure
+                    p.right = None
                     ans.append(root.val)
                     root = root.right
         return ans
