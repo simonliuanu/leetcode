@@ -25,3 +25,22 @@ class Solution:
             return False
         self.pre = root.val
         return self.isValidBST(root.right)
+
+# Postorder solution:
+class Solution:
+    def isValidBST(self, root: Optional[TreeNode]) -> bool:
+
+        def post(node):
+            if not node:
+                return True, inf, -inf
+            l, l_min, l_max = post(node.left)
+            r, r_min, r_max = post(node.right)
+            v = node.val
+            if l and r and l_max < v < r_min:
+                cur_min = min(l_min, v)
+                cur_max = max(r_max, v)
+                return True, cur_min, cur_max
+            else:
+                return False, 0, 0
+
+        return post(root)[0]
