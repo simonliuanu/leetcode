@@ -6,12 +6,15 @@
 #         self.right = right
 
 # DFS
+from typing import Deque
+
+
 class Solution:
     def maxDepth(self, root: Optional[TreeNode]) -> int:
         if not root: return 0
         return max(self.maxDepth(root.left), self.maxDepth(root.right)) + 1
 
-# BFS
+# BFS(iteration) solution:
 class Solution:
     def maxDepth(self, root: Optional[TreeNode]) -> int:
         if not root: return 0
@@ -26,3 +29,20 @@ class Solution:
             ans += 1
         return ans
 
+# BFS(iteration) solution using deque:
+class Solution:
+    def maxDepth(self, root: Optional[TreeNode]) -> int:
+        if not root:
+            return 0
+        ans = 0
+        queue = deque([root])
+        while queue:
+            n = len(queue)
+            for _ in range(n):
+                node = queue.popleft()
+                if node.left:
+                    queue.append(node.left)
+                if node.right:
+                    queue.append(node.right)
+            ans += 1
+        return ans
