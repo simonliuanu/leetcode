@@ -7,8 +7,6 @@
 
 # DFS
 from typing import Deque
-
-
 class Solution:
     def maxDepth(self, root: Optional[TreeNode]) -> int:
         if not root: return 0
