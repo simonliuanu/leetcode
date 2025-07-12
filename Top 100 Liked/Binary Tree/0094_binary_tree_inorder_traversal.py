@@ -4,6 +4,8 @@
 #         self.val = val
 #         self.left = left
 #         self.right = right
+
+# recursion solution:
 class Solution:
     def inorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
 
@@ -16,4 +18,21 @@ class Solution:
             inorder(node.right)
 
         inorder(root)
+        return ans
+
+# iteration solution:
+class Solution:
+    def inorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+        ans = []
+        stack = []
+
+        while root or stack:
+            while root:
+                stack.append(root)
+                root = root.left
+
+            root = stack.pop()
+            ans.append(root.val)
+            root = root.right
+
         return ans
