@@ -19,3 +19,38 @@ class Solution:
 
         dfs(root)
         return ans
+
+# iteration solution:
+class Solution:
+    def preorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+        if not root:
+            return []
+        ans = []
+        q = deque([root])
+        while q:
+            node = q.popleft()
+            ans.append(node.val)
+            if node.right:
+                q.appendleft(node.right)
+            if node.left:
+                q.appendleft(node.left)
+        return ans
+
+# Just realized I didn't have to use deque for this operation,
+# Even if I want to use deque, pop() and append() to the right will do.
+# So here's the simpler
+# stack solution:
+class Solution:
+    def preorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+        if not root:
+            return []
+        ans = []
+        s = [root]
+        while s:
+            node = s.pop()
+            ans.append(node.val)
+            if node.right:
+                s.append(node.right)
+            if node.left:
+                s.append(node.left)
+        return ans
