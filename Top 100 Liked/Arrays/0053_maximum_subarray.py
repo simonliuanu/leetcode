@@ -1,3 +1,4 @@
+# presum + greedy:
 class Solution:
     def maxSubArray(self, nums: List[int]) -> int:
         ans = -inf
@@ -8,4 +9,14 @@ class Solution:
             ans = max(ans, presum - min_presum)
             min_presum = min(min_presum, presum)
 
+        return ans
+
+# dp solution:
+class Solution:
+    def maxSubArray(self, nums: List[int]) -> int:
+        ans = -inf
+        f = 0
+        for i in nums:
+            f = max(f, 0) + i
+            ans = max(ans, f)
         return ans
