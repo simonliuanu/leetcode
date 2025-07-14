@@ -25,3 +25,18 @@ class Solution:
             ans = ans + occ.get(sums - k, 0)
             occ[sums] = occ.get(sums , 0) + 1
         return ans
+
+# simpler solution:
+class Solution:
+    def subarraySum(self, nums: List[int], k: int) -> int:
+        ans = 0
+        presum = 0
+        dic = defaultdict(int)
+        dic[0] = 1
+
+        for i in nums:
+            presum += i
+            ans += dic[presum - k]
+            dic[presum] += 1
+
+        return ans
