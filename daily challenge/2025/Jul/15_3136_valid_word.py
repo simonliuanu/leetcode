@@ -6,7 +6,6 @@ class Solution:
         for c in word:
             if c.isalpha():
                 f[c.lower() in "aeiou"] = True
-            else:
-                if not c.isdigit():
-                    return False
+            elif not c.isdigit():
+                return False
         return all(f)
