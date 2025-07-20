@@ -21,3 +21,30 @@ class Solution:
 
         quicksort(nums, 0, len(nums) - 1)
         return nums[-k]
+
+# optimised quicksort(Dutch National Flag) solution:
+class Solution:
+    def findKthLargest(self, nums: List[int], k: int) -> int:
+
+        def quick(nums, k):
+            pivot = random.choice(nums)
+            large = []
+            small = []
+            equal = []
+            for i in nums:
+                if i > pivot:
+                    large.append(i)
+                elif i < pivot:
+                    small.append(i)
+                else:
+                    equal.append(i)
+            if len(large) >= k:
+                return quick(large, k)
+            elif len(nums) - len(small) < k:
+                return quick(small, k - len(large) - len(equal))
+            else:
+                return pivot
+
+        return quick(nums, k)
+
+
