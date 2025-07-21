@@ -47,4 +47,33 @@ class Solution:
 
         return quick(nums, k)
 
+# max-heap solution:
+class Solution:
+    def findKthLargest(self, nums: List[int], k: int) -> int:
 
+        def build_max_heap(nums, heap_size):
+            for i in range(len(nums) // 2 - 1, -1, -1):
+                max_heapify(nums, i, heap_size)
+
+        def max_heapify(nums, i, heap_size):
+            left = i * 2 + 1
+            right = i * 2 + 2
+            target = i
+
+            if left < heap_size and nums[target] < nums[left]:
+                target = left
+            if right < heap_size and nums[target] < nums[right]:
+                target = right
+            if target != i:
+                nums[target], nums[i] = nums[i], nums[target]
+                max_heapify(nums, target, heap_size)
+
+        heap_size = len(nums)
+        build_max_heap(nums, heap_size)
+
+        for i in range(len(nums) - 1, len(nums) - k, -1):
+            nums[0], nums[i] = nums[i], nums[0]
+            heap_size -= 1
+            max_heapify(nums, 0, heap_size)
+
+        return nums[0]
