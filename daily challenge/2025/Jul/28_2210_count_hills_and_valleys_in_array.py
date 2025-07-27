@@ -14,3 +14,15 @@ class Solution:
                 ans += 1
         return ans
 
+# another solution:
+class Solution:
+    def countHillValley(self, nums: List[int]) -> int:
+        new_num = [nums[0]]
+        ans = 0
+        for i in range(1, len(nums)):
+            if nums[i] != nums[i - 1]:
+                new_num.append(nums[i])
+        for i in range(1, len(new_num) - 1):
+            if new_num[i] > new_num[i - 1] and new_num[i] > new_num[i + 1] or new_num[i] < new_num[i - 1] and new_num[i] < new_num[i + 1]:
+                ans += 1
+        return ans
