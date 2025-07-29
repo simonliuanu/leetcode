@@ -1,16 +1,21 @@
+# solution 1, logically correct, timeout:
 class Solution:
     def smallestSubarrays(self, nums: List[int]) -> List[int]:
-        max_or = 0
-        for i in nums:
-            max_or |= i
         n = len(nums)
+        max_or = 0
+        max_arr = [0] * n
+        for i in range(n - 1, -1, -1):
+            max_or |= nums[i]
+            max_arr[i] = max_or
         ans = [0] * n
         for i in range(n):
-            curr = 0
             ret = 0
             j = i
-            while j < n and ret != max_or:
+            target = max_arr[j]
+            while True:
                 ret |= nums[j]
-                curr += 1
-            ans[i] = curr
+                j += 1
+                if j == n or ret == target:
+                    break
+            ans[i] = j - i
         return ans
