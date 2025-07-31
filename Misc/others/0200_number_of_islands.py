@@ -2,7 +2,7 @@
 class Solution:
     def numIslands(self, grid: List[List[str]]) -> int:
 
-        def bfs(row, col, i, j, grid):
+        def dfs(row, col, i, j, grid):
             if grid[i][j] == '1':
                 grid[i][j] = '0'
             if i + 1 < row and grid[i + 1][j] == '1':
