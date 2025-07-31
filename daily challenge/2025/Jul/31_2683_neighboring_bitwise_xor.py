@@ -9,3 +9,15 @@ class Solution:
 
         n = len(derived)
         return validate(n, [0] * n, derived) or validate(n, [1] + [0] * (n - 1), derived)
+
+# a smarter solution:
+class Solution:
+    def doesValidArrayExist(self, derived: List[int]) -> bool:
+
+        def validate(start):
+            tmp = start
+            for i in derived:
+                start ^= i
+            return tmp == start
+
+        return validate(0) or validate(1)
