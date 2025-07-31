@@ -21,3 +21,13 @@ class Solution:
             return tmp == start
 
         return validate(0) or validate(1)
+
+# a much smarter solution:
+class Solution:
+    def doesValidArrayExist(self, derived: List[int]) -> bool:
+        return reduce(xor, derived) == 0
+# and:
+class Solution:
+    def doesValidArrayExist(self, derived: List[int]) -> bool:
+        return True if sum(derived) % 2 == 0 else False
+
