@@ -9,3 +9,7 @@ class Solution:
             n /= 2
         return True
 
+# one-line solution:
+class Solution:
+    def isPowerOfTwo(self, n: int) -> bool:
+        return n > 0 and n & n - 1 == 0
