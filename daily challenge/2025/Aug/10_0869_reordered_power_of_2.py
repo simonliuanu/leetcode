@@ -28,3 +28,9 @@ class Solution:
                 return True
         return False
 
+# log(m) for m is digits of n:
+class Solution:
+    def reorderedPowerOf2(self, n: int) -> bool:
+        sig = ''.join(sorted(str(n)))
+        pow_of_sig = [''.join(sorted(str(1 << k))) for k in range(31)]
+        return sig in pow_of_sig
