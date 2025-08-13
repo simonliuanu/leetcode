@@ -26,5 +26,4 @@ class Solution:
 # double O(1) solution:
 class Solution:
     def isPowerOfThree(self, n: int) -> bool:
-        p = 3 ** 19
-        return n > 0 and p % n == 0
+        return n > 0 and 3**19 % n == 0
